@@ -3,9 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
-    <factory>
-        <partial-view-context-factory>org.quadro.jsf.component.context.QPartialViewContextFactory
-        </partial-view-context-factory>
-    </factory>
+
+    <managed-bean>
+        <managed-bean-name>treeBean</managed-bean-name>
+        <managed-bean-class>org.quadro.jsf.demo.TreeBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
 
 </faces-config>
