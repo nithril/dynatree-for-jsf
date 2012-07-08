@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>DynatreeComponent</artifactId>
+        <groupId>DynatreeComponent</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>demo</artifactId>
+
+    <packaging>war</packaging>
+
+
+    <dependencies>
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.1.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.1.9</version>
+        </dependency>
+
+        <!-- Primefaces Modification -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.5.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>0.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.peichhorn</groupId>
+            <artifactId>lombok-pg</artifactId>
+            <version>0.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>12.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>DynatreeComponent</groupId>
+            <artifactId>jsf-component</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>7.4.5.v20110725</version>
+                <configuration>
+                    <stopPort>9966</stopPort>
+                    <stopKey>foo</stopKey>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8080</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+
+                    <webAppConfig>
+                        <contextPath>/tree</contextPath>
+                    </webAppConfig>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.zeroturnaround</groupId>
+                <artifactId>jrebel-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-rebel-xml</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+
+    <properties>
+        <version.java>1.6</version.java>
+        <version.javaee>6.0</version.javaee>
+        <version.derby>10.8.2.2</version.derby>
+        <version.junit>4.10</version.junit>
+        <version.mockito>1.9.0</version.mockito>
+        <version.arquillian>1.0.1.Final</version.arquillian>
+        <version.arquillian.glassfish.embedded>1.0.0.CR3</version.arquillian.glassfish.embedded>
+        <version.arquillian.jboss.managed>7.1.1.Final</version.arquillian.jboss.managed>
+        <version.jacoco>0.5.7.201204190339</version.jacoco>
+        <!--TomEE-->
+        <version.openejb>4.1.0-SNAPSHOT</version.openejb>
+        <version.openejb.javaee-api>6.0-4</version.openejb.javaee-api>
+        <version.tomee>1.1.0-SNAPSHOT</version.tomee>
+        <version.myfaces>2.1.7</version.myfaces>
+        <!--GlassFish-->
+        <version.glassfish>3.1.2</version.glassfish>
+        <version.maven.embedded.glassfish.plugin>3.1.1</version.maven.embedded.glassfish.plugin>
+        <!--Maven Plugins & co-->
+        <version.maven.war.plugin>2.2</version.maven.war.plugin>
+        <version.maven.compiler.plugin>2.4</version.maven.compiler.plugin>
+        <version.maven.surefire.plugin>2.12</version.maven.surefire.plugin>
+        <version.maven.failsafe.plugin>2.12</version.maven.failsafe.plugin>
+        <version.jrebel>1.1.3</version.jrebel>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+
+        <userProfile>dev</userProfile>
+        <facelets.DEVELOPMENT>true</facelets.DEVELOPMENT>
+        <!-- Application settings -->
+        <copyright.year>2008</copyright.year>
+        <dao.framework>hibernate</dao.framework>
+        <web.framework>jsf</web.framework>
+        <amp.genericCore>true</amp.genericCore>
+        <amp.fullSource>false</amp.fullSource>
+
+        <!-- Framework dependency versions -->
+        <appfuse.version>2.0.2</appfuse.version>
+        <spring.version>3.1.1.RELEASE</spring.version>
+        <!--
+        <spring.version>3.0.0.RELEASE</spring.version>
+
+        -->
+
+        <!-- Testing dependency versions -->
+        <jmock.version>2.5.1</jmock.version>
+        <jsp.version>2.1</jsp.version>
+        <junit.version>4.4</junit.version>
+        <servlet.version>2.5</servlet.version>
+        <shale.version>1.0.4</shale.version>
+        <wiser.version>1.2</wiser.version>
+
+        <!-- WebTest dependency versions  -->
+        <webtest.version>R_1702</webtest.version>
+
+        <cargo.host>localhost</cargo.host>
+        <cargo.port>8091</cargo.port>
+        <cargo.wait>false</cargo.wait>
+
+        <!-- Database settings -->
+        <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+
+
+        <!-- mail settings -->
+        <mailDefaultFrom><![CDATA[4dconcept<antoine.berthelin@4dconcept.fr>]]></mailDefaultFrom>
+        <mail.transportProtocol>smtp</mail.transportProtocol>
+        <mail.host>smtp.4dconcept.fr</mail.host>
+        <mail.username>Antoine Berthelin</mail.username>
+        <mail.password/>
+        <mail.sender>antoine.berthelin@4dconcept.fr</mail.sender>
+        <!--    <mail.senderclass>org.springframework.mail.javamail.JavaMailSenderImpl</mail.senderclass> -->
+        <!--	<mail.propertyOne>mail.smtp.auth=true</mail.propertyOne>-->
+
+        <acegijsf.version>1.1.3</acegijsf.version>
+        <ajax4jsf.version>1.0.6</ajax4jsf.version>
+        <aspectj.version>1.6.9</aspectj.version>
+        <clickstream.version>1.0.2</clickstream.version>
+        <commons.beanutils.version>1.7.0</commons.beanutils.version>
+        <commons.collections.version>3.2</commons.collections.version>
+        <commons.dbcp.version>1.2.1</commons.dbcp.version>
+        <commons.lang.version>2.5</commons.lang.version>
+        <corejsf.validator.version>1.0</corejsf.validator.version>
+        <dwr.version>2.0.1</dwr.version>
+        <ehcache.version>1.6.0</ehcache.version>
+
+
+        <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
+        <hibernate.version>3.3.2.GA</hibernate.version>
+        <javamail.version>1.4</javamail.version>
+        <jpa.version>1.0</jpa.version>
+        <jstl.version>1.2</jstl.version>
+        <log4j.version>1.2.13</log4j.version>
+
+        <myfaces.tomahawk.version>1.1.6</myfaces.tomahawk.version>
+
+        <oscache.version>2.3</oscache.version>
+
+        <spring.security.version>3.0.5.RELEASE</spring.security.version>
+        <urlrewrite.version>3.0.4</urlrewrite.version>
+        <velocity.version>1.6.4</velocity.version>
+        <velocitytools.version>2.0</velocitytools.version>
+        <xfire.version>1.2.6</xfire.version>
+
+
+        <publisher.ATA.path>c:/DocAdvance/ATA/PublisherATA/</publisher.ATA.path>
+        <image.magik.path>C:\DocAdvance\Tools\ImageMagick-6.5.4-Q8/convert.exe</image.magik.path>
+        <file.cache.path>c:/DocAdvance/ATA/cache/</file.cache.path>
+        <temp.path>c:/DocAdvance/ATA/temp/</temp.path>
+
+        <log.ATA.path>c:/DocAdvance/ATA/logs/</log.ATA.path>
+        <log.ATA.name>ATA</log.ATA.name>
+
+        <opensp.path>c:/DocAdvance/Tools/OpenSP-1.5.2/win32/</opensp.path>
+        <opensp.catalog.path>c:/DocAdvance/Tools/OpenSP-1.5.2/catalog/</opensp.catalog.path>
+
+
+        <ata.server.uri>http://localhost:8080/</ata.server.uri>
+        <quadropam.server.uri>http://localhost:8086/qpam-ws/</quadropam.server.uri>
+
+        <ata.quadrolic.product.key>36BBB9F7B4C862A9D63679F263515E8F36221C13D7F48B4E5FE810F08C56047F
+        </ata.quadrolic.product.key>
+
+        <license.path>c:/DocAdvance/ATA/License/</license.path>
+        <rights.path>c:/DocAdvance/ATA/Rights/</rights.path>
+
+        <task.CRONExpression>0 0 12 * * ?</task.CRONExpression>
+        <task.DelayDays>1</task.DelayDays>
+
+        <jdbc.groupId>com.oracle</jdbc.groupId>
+        <jdbc.artifactId>ojdbc14</jdbc.artifactId>
+        <jdbc.version>10.2.0.2.0</jdbc.version>
+        <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
+
+        <lombok.version>0.11.0</lombok.version>
+    </properties>
+
+
+
+<repositories>
+        <repository>
+            <id>sonar</id>
+            <name>Sonar</name>
+            <url>http://repository.sonarsource.org/content/repositories/sonar</url>
+        </repository>
+        <repository>
+            <id>apache-snapshot</id>
+            <url>https://repository.apache.org/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>java.net-public-repository-group</id>
+            <name>Java.Net Public Maven Repository Group</name>
+            <url>https://maven.java.net/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>java.net-staging-repository-group</id>
+            <name>Java.Net Staging Maven Repository Group</name>
+            <url>https://maven.java.net/content/groups/staging</url>
+        </repository>
+        <repository>
+            <id>java.net-releases-repository-group</id>
+            <name>Java.Net Releases Maven Repository Group</name>
+            <url>https://maven.java.net/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>java.net-snapshots-repository-group</id>
+            <name>Java.Net Snapshots Maven Repository Group</name>
+            <url>https://maven.java.net/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
+
+
+    <pluginRepositories>
+            <pluginRepository>
+                <id>apache-snapshot</id>
+                <url>https://repository.apache.org/content/repositories/snapshots/</url>
+            </pluginRepository>
+            <pluginRepository>
+                <id>maven-central</id>
+                <url>http://repo1.maven.org/maven2/</url>
+            </pluginRepository>
+        </pluginRepositories>
+
+</project>

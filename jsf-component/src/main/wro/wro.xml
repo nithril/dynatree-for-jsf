@@ -1,0 +1,5 @@
+<groups xmlns="http://www.isdc.ro/wro">
+  <group name="jsf.dynatree.adapter">
+    <js>/jsf.dynatree.adapter.js</js>
+  </group>
+</groups>
