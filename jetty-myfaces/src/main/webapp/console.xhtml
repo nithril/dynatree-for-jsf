@@ -18,13 +18,13 @@
     <h:form id="cform">
 
         <div>
-            <q:myTree id="myTree" child="#{treeBean.child}" activate="alert('activate')" lazyRead="alert('lazyRead')">
-                <f:ajax event="lazyRead" listener="#{treeBean.lazyRead}" onevent="function(response){cmp.onLazyRead_OnEvent(response,node);}"/>
-                <f:ajax event="activate" listener="#{treeBean.activate}" render="keyNode"/>
+            <q:myTree id="myTree" options="{autoCollapse:'true'}" children="#{treeBean.child}" onActivate="alert('activate')" onLazyRead="alert('lazyRead')">
+                <f:ajax event="onLazyRead" listener="#{treeBean.lazyRead}" onevent="function(response){cmp.onLazyRead_OnEvent(response,option.node);}"/>
+                <f:ajax event="onActivate" listener="#{treeBean.activate}" render="keyNode"/>
             </q:myTree>
         </div>
 
-        <h:panelGroup id="keyNode">
+        <h:panelGroup id="keyNode" style="">
             <h:outputText value="#{treeBean.value}"/>
         </h:panelGroup>
 

@@ -4,8 +4,7 @@ package org.quadro.jsf.demo;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
-import org.quadro.jsf.component.dynatree.event.DTActivateEvent;
-import org.quadro.jsf.component.dynatree.event.DTLazyReadEvent;
+import org.quadro.jsf.component.dynatree.event.DTEvent;
 import org.quadro.jsf.component.dynatree.model.DTreeNode;
 
 import javax.faces.event.AjaxBehaviorEvent;
@@ -28,7 +27,7 @@ public class TreeBean implements Serializable {
 
 
     public void activate(AjaxBehaviorEvent ajaxBehaviorEvent) {
-        DTActivateEvent activateEvent = (DTActivateEvent) ajaxBehaviorEvent;
+        DTEvent activateEvent = (DTEvent) ajaxBehaviorEvent;
 
         //FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("toRender");
 
@@ -37,7 +36,7 @@ public class TreeBean implements Serializable {
     }
 
     public void lazyRead(AjaxBehaviorEvent behaviorEvent) {
-        DTLazyReadEvent lazyReadEvent = (DTLazyReadEvent) behaviorEvent;
+        DTEvent lazyReadEvent = (DTEvent) behaviorEvent;
 
         DTreeNode node = new DTreeNode().title("Folder 2").isFolder(true).key("folder2").children(
                 Lists.newArrayList(

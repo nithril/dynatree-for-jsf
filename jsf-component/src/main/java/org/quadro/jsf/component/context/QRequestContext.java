@@ -21,7 +21,7 @@ import java.util.List;
 
 public class QRequestContext {
 
-    private List<DTreeNode> nodes;
+    private Object nodes;
 
     private static ThreadLocal<QRequestContext> instance = new ThreadLocal<QRequestContext>(){
         @Override
@@ -34,11 +34,11 @@ public class QRequestContext {
         return instance.get();
     }
 
-    public List<DTreeNode> getNodes() {
+    public Object getNodes() {
         return nodes;
     }
 
-    public void setNodes(List<DTreeNode> nodes) {
+    public void setNodes(Object nodes) {
         this.nodes = nodes;
     }
 }

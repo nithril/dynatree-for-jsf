@@ -6,56 +6,193 @@
     <namespace>http://mca.org/qmass</namespace>
 
 
-
     <tag>
         <tag-name>myTree</tag-name>
         <component>
             <component-type>org.quadro.jsf.component.dynatree.DTreeView</component-type>
         </component>
+
         <attribute>
-            <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+            <description>Unique identifier of the component in a namingContainer</description>
             <name>id</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
+
         <attribute>
-            <description><![CDATA[Client side callback to execute when a tab is clicked.]]></description>
-            <name>activate</name>
+            <description>Init tree structure from this object array.</description>
+            <name>children</name>
             <required>false</required>
-            <type>java.lang.String</type>
+            <type>java.lang.Object</type>
         </attribute>
+
         <attribute>
-            <description><![CDATA[Client side callback to execute when a tab is clicked.]]></description>
-            <name>lazyRead</name>
+            <description>Tree additionnal options.</description>
+            <name>options</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+
+        <attribute>
+            <description>Javascript widget variable.</description>
+            <name>widgetVar</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
 
-        <attribute>
-            <description><![CDATA[Client side callback to execute when a tab is clicked.]]></description>
-            <name>child</name>
-            <required>false</required>
-            <type>java.util.List</type>
-        </attribute>
 
         <attribute>
-            <description><![CDATA[Client side callback to execute when a tab is clicked.]]></description>
+            <description>CSS style(s) to be applied when this component is rendered.</description>
             <name>styleClass</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
 
         <attribute>
-            <description><![CDATA[Client side callback to execute when a tab is clicked.]]></description>
+            <description>Space-separated list of CSS style class(es) to be applied when this element is rendered.
+                This value must be passed through as the "class" property on generated markup.
+            </description>
             <name>style</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
 
 
+        <attribute>
+            <description></description>
+            <name>onClick</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onDblClick</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onKeydown</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onKeypress</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onFocus</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onBlur</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onQueryActivate</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onQuerySelect</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onQueryExpand</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onPostInit</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onActivate</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onDeactivate</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onSelect</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onExpand</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onLazyRead</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onCustomRender</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onCreate</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>onRender</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
+        <attribute>
+            <description></description>
+            <name>postProcess</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+
     </tag>
-
-
 
 
 </facelet-taglib>

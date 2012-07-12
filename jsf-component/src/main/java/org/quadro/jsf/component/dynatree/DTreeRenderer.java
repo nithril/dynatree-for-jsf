@@ -1,6 +1,5 @@
 package org.quadro.jsf.component.dynatree;
 
-import org.quadro.jsf.component.dynatree.model.DTreeNode;
 import org.quadro.jsf.component.dynatree.model.JsFunction;
 import org.quadro.jsf.component.utils.QUtils;
 
@@ -53,25 +52,51 @@ public class DTreeRenderer extends Renderer {
         DTreeView myTreeView = (DTreeView) component;
 
 
-        String children = null;
 
-        List<DTreeNode> nodes = (List<DTreeNode>) myTreeView.getAttribute(DTreeView.PropertyKeys.child);
+        String widgetVar = (String) myTreeView.getAttribute(DTreeView.PropertyKeys.widgetVar);
+        String children = convertObjectToScript(myTreeView.getAttribute(DTreeView.PropertyKeys.children));
+        String dynaOptions = convertObjectToScript(myTreeView.getAttribute(DTreeView.PropertyKeys.options));
 
-        if (nodes != null) {
-            children = QUtils.getObjectWriter().writeValueAsString(nodes);
-        } else {
-            children = "null";
+        StringBuilder scriptBuilder = new StringBuilder();
+
+        //widgetVar
+        if (widgetVar != null && !widgetVar.isEmpty()) {
+            scriptBuilder.append(widgetVar).append("=");
+        }
+        //instanciate component
+        scriptBuilder.append("new Dynatree4Jsf('")
+                .append(component.getClientId()).append("','")
+                .append(component.getClientId()).append("',")
+                .append("{");
+
+        //options
+        boolean hasOption = false;
+        if (children != null && !children.isEmpty()){
+            scriptBuilder.append("children:").append(children);
+            hasOption = true;
+        }
+        if (dynaOptions != null && !dynaOptions.isEmpty()){
+            if (hasOption) {
+                scriptBuilder.append(",");
+            }
+            scriptBuilder.append("dynaOptions:").append(dynaOptions);
+            hasOption = true;
         }
 
-        String activate = getScript(DTreeView.PropertyKeys.activate, myTreeView, context);
-        String lazyRead = getScript(DTreeView.PropertyKeys.lazyRead, myTreeView, context);
+        for (DTreeView.PropertyKeys event : DTreeView.PropertyKeys.events()){
+            String script = convertBehaviourToScript(event, myTreeView, context);
+            if (script != null && !script.isEmpty()){
+                if (hasOption) {
+                    scriptBuilder.append(",");
+                }
+                scriptBuilder.append(event.name()).append(":function(cmp,event,option){").append(script).append("}");
+                hasOption = true;
+            }
+        }
 
-        StringBuilder scriptBuilder = new StringBuilder()
-                .append("new Dynatree4Jsf('").append(component.getClientId()).append("','")
-                .append(component.getClientId()).append("',")
-                .append("{children:").append(children != null ? children : "null").append(",")
-                .append("activate:function(cmp , node,event){").append(activate).append("},")
-                .append("lazyRead:function(cmp , node,event){").append(lazyRead).append("}});");
+        scriptBuilder.append("});");
+
+
 
 
         ResponseWriter writer = context.getResponseWriter();
@@ -85,7 +110,21 @@ public class DTreeRenderer extends Renderer {
         writer.endElement("script");
     }
 
-    private String getScript(DTreeView.PropertyKeys keys, DTreeView component, FacesContext context) {
+
+    private String convertObjectToScript(Object value) throws IOException {
+        String script = null;
+
+        if (value != null) {
+            if (value instanceof Collection) {
+                script = QUtils.getObjectWriter().writeValueAsString(value);
+            } else {
+                script = value.toString();
+            }
+        }
+        return script;
+    }
+
+    private String convertBehaviourToScript(DTreeView.PropertyKeys keys, DTreeView component, FacesContext context) {
 
         StringBuilder script = new StringBuilder();
 
@@ -165,7 +204,6 @@ public class DTreeRenderer extends Renderer {
     private static String buildScriptFromAjaxBehavior(ClientBehaviorContext behaviorContext, AjaxBehavior ajaxBehavior) {
 
 
-
         UIComponent component = behaviorContext.getComponent();
         String eventName = behaviorContext.getEventName();
 
@@ -182,35 +220,35 @@ public class DTreeRenderer extends Renderer {
         scriptBuilder.append(",event,'").append(eventName).append("',");
         //execute ids
         String executeIds = resolveAndJoinIds(component, ajaxBehavior.getExecute());
-        if (executeIds != null){
+        if (executeIds != null) {
             scriptBuilder.append("'").append(executeIds).append("',");
-        }else{
+        } else {
             scriptBuilder.append("null").append(",");
         }
         //render ids
         String renderIds = resolveAndJoinIds(component, ajaxBehavior.getRender());
-        if (renderIds != null){
+        if (renderIds != null) {
             scriptBuilder.append("'").append(renderIds).append("',");
-        }else{
+        } else {
             scriptBuilder.append("null").append(",");
         }
 
 
-        Map<String,Object> options = new HashMap<String, Object>();
+        Map<String, Object> options = new HashMap<String, Object>();
 
         String onevent = ajaxBehavior.getOnevent();
-        if (onevent != null){
-            options.put("onevent" , new JsFunction(onevent));
+        if (onevent != null) {
+            options.put("onevent", new JsFunction(onevent));
         }
 
         String onerror = ajaxBehavior.getOnerror();
-        if (onerror != null){
-            options.put("onerror" , new JsFunction(onerror));
+        if (onerror != null) {
+            options.put("onerror", new JsFunction(onerror));
         }
 
-        if (!params.isEmpty()){
+        if (!params.isEmpty()) {
             for (ClientBehaviorContext.Parameter param : params) {
-                options.put(param.getName() , param.getValue());
+                options.put(param.getName(), param.getValue());
             }
         }
 
@@ -226,9 +264,8 @@ public class DTreeRenderer extends Renderer {
     }
 
 
-    private static final List<String> RESERVED_IDS = Arrays.asList("@all" , "@none" , "@form" , "@this");
+    private static final List<String> RESERVED_IDS = Arrays.asList("@all", "@none", "@form", "@this");
 
-    // Appends an ids argument to the ajax command
     private static String resolveAndJoinIds(UIComponent component, Collection<String> ids) {
 
         if ((ids == null) || ids.isEmpty()) {
@@ -238,15 +275,15 @@ public class DTreeRenderer extends Renderer {
         StringBuilder builder = new StringBuilder();
 
         for (String id : ids) {
-            if (builder.length() > 0){
+            if (builder.length() > 0) {
                 builder.append(" ");
             }
 
-            if (RESERVED_IDS.contains(id)){
+            if (RESERVED_IDS.contains(id)) {
                 builder.append(id);
-            }else{
+            } else {
                 UIComponent foundComponent = component.findComponent(id);
-                if (foundComponent != null){
+                if (foundComponent != null) {
                     builder.append(foundComponent.getClientId());
                 }
             }
@@ -254,7 +291,6 @@ public class DTreeRenderer extends Renderer {
 
         return builder.toString();
     }
-
 
 
 }

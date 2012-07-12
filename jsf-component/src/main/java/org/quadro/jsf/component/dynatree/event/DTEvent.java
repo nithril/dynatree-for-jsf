@@ -1,13 +1,13 @@
 package org.quadro.jsf.component.dynatree.event;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.quadro.jsf.component.context.QRequestContext;
-import org.quadro.jsf.component.dynatree.model.DTreeNode;
+import org.quadro.jsf.component.dynatree.DTreeView;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.behavior.Behavior;
 import javax.faces.event.AjaxBehaviorEvent;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,18 +16,21 @@ import java.util.List;
  * Time: 22:01
  * To change this template use File | Settings | File Templates.
  */
-public class DTLazyReadEvent extends AjaxBehaviorEvent {
+public class DTEvent extends AjaxBehaviorEvent {
 
     @Getter
     private final String key;
 
+    @Getter
+    private DTreeView.PropertyKeys propertyKey;
 
-    public DTLazyReadEvent(UIComponent component, Behavior behavior, String key) {
+    public DTEvent(UIComponent component, Behavior behavior, String key, DTreeView.PropertyKeys propertyKey) {
         super(component, behavior);
         this.key = key;
+        this.propertyKey = propertyKey;
     }
 
-    public void setNodes(List<DTreeNode> treeNodes) {
-        QRequestContext.getCurrentInstance().setNodes(treeNodes);
+    public void setNodes(Object nodes){
+        QRequestContext.getCurrentInstance().setNodes(nodes);
     }
 }

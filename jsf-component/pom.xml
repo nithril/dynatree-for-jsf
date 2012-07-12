@@ -9,6 +9,19 @@
     <artifactId>dynatree-for-jsf</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <developers>
+        <developer>
+            <name>Nicolas LABROT</name>
+            <email>nicolas.labrot@gmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
 
     <properties>
         <lombok.version>0.11.0</lombok.version>
@@ -16,7 +29,17 @@
         <jackson.version>2.0.4</jackson.version>
         <guava.version>12.0</guava.version>
         <testng.version>6.5.1</testng.version>
+        <wro4j.minimize>true</wro4j.minimize>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>debug</id>
+            <properties>
+                <wro4j.minimize>false</wro4j.minimize>
+            </properties>
+        </profile>
+    </profiles>
 
 
     <dependencies>
@@ -131,6 +154,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <minimize>${wro4j.minimize}</minimize>
                     <wroFile>src/main/wro/wro.xml</wroFile>
                     <contextFolder>${basedir}/src/main/javascript/</contextFolder>
                     <jsDestinationFolder>${basedir}/target/classes/META-INF/resources/dynatree</jsDestinationFolder>
@@ -139,6 +163,8 @@
 
         </plugins>
     </build>
+
+
 
 
 </project>
