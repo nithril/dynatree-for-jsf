@@ -1,4 +1,4 @@
-dynatree-for-jsf
+Introduction
 ================
 
 dynatree-for-jsf is a JSF 2 adapter for dynatree jQuery plugin (http://code.google.com/p/dynatree/). dynatree allows to dynamically create html tree view controls using JavaScript.
@@ -7,7 +7,6 @@ Why this adapter though Richfaces or Primefaces already implements tree componen
 
 Features
 ================
-This adapter handles ajax
 
 Here is a typical use of the adapter
 
@@ -18,7 +17,14 @@ Here is a typical use of the adapter
 </q:myTree>
 ```
 
-TBC
+This adapter handles event for all of the dynatree event. All events can be mapped to JSF ajax events. 
+
+
+Examples
+================
+
+This projet includes an example. 
+
 
 Credits
 ================
