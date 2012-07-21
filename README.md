@@ -8,6 +8,8 @@ Why this adapter though Richfaces or Primefaces already implements tree componen
 Features
 ================
 
+This adapter handles events for all of the dynatree events. All events can be mapped to JSF ajax events. 
+
 Here is a typical use of the adapter
 
 ```xml
@@ -17,18 +19,36 @@ Here is a typical use of the adapter
 </q:myTree>
 ```
 
-This adapter handles event for all of the dynatree event. All events can be mapped to JSF ajax events. 
+onLazyRead and onActivate ajax events are binded to methods of the managed bean treeBean. 
+- lazyRead populates the tree dynamicaly.
+- activate refresh a JSF panel with the selected nod edynkey.
+
+All with Ajax.
+
+This project does not include jquery, nor dynatree. You should include their by yourself.
 
 
-Examples
+Example
 ================
+Have a look at the sample.  
 
-This projet includes an example. 
+```shell
+> mvn clean install
+> cd jetty-mojarra / cd jetty-myfaces
+> mvn jetty:run
+```
+Browser to http://localhost:8080/tree/console.jsf
 
+Licenses
+================
+Apache License, Version 2.0 
+http://www.apache.org/licenses/LICENSE-2.0
 
 Credits
 ================
-Primefaces, a source of inspiration on how to create an JSF 2 component
+Authors of dynatree, a great component
+Authors of Primefaces, a source of inspiration on how to create an JSF 2 component with Ajax behaviour
+
 
 
 
