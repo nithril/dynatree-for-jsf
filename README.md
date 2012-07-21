@@ -11,10 +11,12 @@ This adapter handles ajax
 
 Here is a typical use of the adapter
 
+```xml
 <q:myTree id="myTree" options="{autoCollapse:'true'}" children="#{treeBean.child}" onActivate="alert('activate')" onLazyRead="alert('lazyRead')">
     <f:ajax event="onLazyRead" listener="#{treeBean.lazyRead}" onevent="function(response){cmp.onLazyRead_OnEvent(response,option.node);}"/>
     <f:ajax event="onActivate" listener="#{treeBean.activate}" render="keyNode"/>
 </q:myTree>
+```
 
 TBC
 
