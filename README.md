@@ -48,7 +48,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 Credits
 ================
-Authors of dynatree, a great component
+Authors of dynatree, a great component.
 Authors of Primefaces and Mojarra, a source of inspiration on how to create an JSF 2 component with Ajax behaviour
 
 
