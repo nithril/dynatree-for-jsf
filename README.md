@@ -39,7 +39,7 @@ I have create an example with an infinite ajax tree
 ```
 Browse to http://localhost:8080/tree/tree.jsf
 
-![alt Screenshot](sample.png)
+![alt Screenshot](https://raw.github.com/nithril/dynatree-for-jsf/develop/sample.png)
 
 Licenses
 ================
