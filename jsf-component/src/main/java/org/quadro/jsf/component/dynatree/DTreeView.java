@@ -25,7 +25,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 
-@FacesComponent(value = DTreeView.COMPONENT_TYPË)
+@FacesComponent(value = DTreeView.COMPONENT_TYPE)
 @ResourceDependencies({
         @ResourceDependency(name = "jsf.dynatree.adapter.js", library = "dynatree", target = "head"),
         @ResourceDependency(name = "jsf.js", library = "javax.faces", target = "head")})
@@ -35,7 +35,7 @@ public class DTreeView extends UIComponentBase implements ClientBehaviorHolder {
 
     public static final String COMPONENT_FAMILY = "org.quadro.jsf.component.dynatree";
 
-    public static final String COMPONENT_TYPË = "org.quadro.jsf.component.dynatree.DTreeView";
+    public static final String COMPONENT_TYPE = "org.quadro.jsf.component.dynatree.DTreeView";
 
     public static final String JAVAX_FACES_PARTIAL_EVENT = "javax.faces.partial.event";
 
