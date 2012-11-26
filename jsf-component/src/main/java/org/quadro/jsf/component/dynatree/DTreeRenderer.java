@@ -161,7 +161,6 @@ public class DTreeRenderer extends Renderer {
                 }
             }
         }
-
         return sb.length() == 0 ? null : sb.toString();
     }
 
@@ -291,7 +290,5 @@ public class DTreeRenderer extends Renderer {
 
         return builder.toString();
     }
-
-
 }
 

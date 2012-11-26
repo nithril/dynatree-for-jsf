@@ -11,16 +11,16 @@ This adapter handles ajax
 
 Here is a typical use of the adapter
 
-<q:myTree id="myTree" options="{autoCollapse:'true'}" children="#{treeBean.child}" onActivate="alert('activate')" onLazyRead="alert('lazyRead')">
+<q:dynatree id="myTree" options="{autoCollapse:'true'}" children="#{treeBean.child}" onActivate="alert('activate')" onLazyRead="alert('lazyRead')">
     <f:ajax event="onLazyRead" listener="#{treeBean.lazyRead}" onevent="function(response){cmp.onLazyRead_OnEvent(response,option.node);}"/>
     <f:ajax event="onActivate" listener="#{treeBean.activate}" render="keyNode"/>
-</q:myTree>
+</q:dynatree>
 
 TBC
 
 Credits
 ================
-Primefaces, a source of inspiration on how to create an JSF 2 component
+Primefaces and Mojarra, a source of inspiration on how to create an JSF 2 component
 
 
 

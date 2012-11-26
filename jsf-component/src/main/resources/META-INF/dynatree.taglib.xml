@@ -7,7 +7,7 @@
 
 
     <tag>
-        <tag-name>myTree</tag-name>
+        <tag-name>dynatree</tag-name>
         <component>
             <component-type>org.quadro.jsf.component.dynatree.DTreeView</component-type>
         </component>
@@ -20,14 +20,14 @@
         </attribute>
 
         <attribute>
-            <description>Init tree structure from this object array.</description>
+            <description>Init tree structure. It can be a String containing the JSON or a collection converted to JSON.</description>
             <name>children</name>
             <required>false</required>
             <type>java.lang.Object</type>
         </attribute>
 
         <attribute>
-            <description>Tree additionnal options.</description>
+            <description>Tree additionnal options. It can be a String containing the JSON or a map converted to JSON</description>
             <name>options</name>
             <required>false</required>
             <type>java.lang.Object</type>
@@ -58,7 +58,8 @@
             <type>java.lang.String</type>
         </attribute>
 
-
+        <!-- For a complete description of these events, you can open the dynatree documentation
+        http://wwwendt.de/tech/dynatree/doc/dynatree-doc.html  -->
         <attribute>
             <description></description>
             <name>onClick</name>
