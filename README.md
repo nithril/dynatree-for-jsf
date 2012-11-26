@@ -13,15 +13,15 @@ This adapter handles events for all of the dynatree events. All events can be ma
 Here is a typical use of the adapter
 
 ```xml
-<q:myTree id="myTree" options="{autoCollapse:'true'}" children="#{treeBean.child}" onActivate="alert('activate')" onLazyRead="alert('lazyRead')">
+<q:dynatree id="myTree" options="{autoCollapse:'true'}" children="#{treeBean.child}" onActivate="alert('activate')" onLazyRead="alert('lazyRead')">
     <f:ajax event="onLazyRead" listener="#{treeBean.lazyRead}" onevent="function(response){cmp.onLazyRead_OnEvent(response,option.node);}"/>
     <f:ajax event="onActivate" listener="#{treeBean.activate}" render="keyNode"/>
-</q:myTree>
+</q:dynatree>
 ```
 
 onLazyRead and onActivate ajax events are binded to methods of the managed bean treeBean. 
 - lazyRead populates the tree dynamicaly.
-- activate refresh a JSF panel with the selected nod edynkey.
+- activate refresh a JSF panel with the selected node key.
 
 All with Ajax.
 
@@ -30,14 +30,16 @@ This project does not include jquery, nor dynatree. You should include their by 
 
 Example
 ================
-Have a look at the sample.  
+I have create an example with an infinite ajax tree
 
 ```shell
-> mvn clean install
-> cd jetty-mojarra / cd jetty-myfaces
-> mvn jetty:run
+> mvn clean install -P mojarra / -P myfaces
+> cd jetty-sample
+> mvn jetty:run -P mojarra / -P myfaces
 ```
-Browser to http://localhost:8080/tree/console.jsf
+Browse to http://localhost:8080/tree/tree.jsf
+
+![alt Screenshot](sample.png)
 
 Licenses
 ================
@@ -47,7 +49,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 Credits
 ================
 Authors of dynatree, a great component
-Authors of Primefaces, a source of inspiration on how to create an JSF 2 component with Ajax behaviour
+Authors of Primefaces and Mojarra, a source of inspiration on how to create an JSF 2 component with Ajax behaviour
 
 
 
