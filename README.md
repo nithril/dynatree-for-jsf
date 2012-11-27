@@ -38,6 +38,7 @@ I have create an example with an infinite ajax tree
 > mvn jetty:run -P mojarra / -P myfaces
 ```
 Browse to http://localhost:8080/tree/tree.jsf
+The sample is deployed on Cloudbees (http://dynatree.nithril.cloudbees.net/tree.jsf)
 
 ![alt Screenshot](https://raw.github.com/nithril/dynatree-for-jsf/develop/sample.png)
 
